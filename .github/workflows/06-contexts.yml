@@ -1,0 +1,24 @@
+name: 06 - contexts
+run-name: custom workflow run name
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  echo-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display information
+        run: |
+          echo "GITHUB_WORKFLOW: $GITHUB_WORKFLOW"
+          echo "GITHUB_RUN_ID: $GITHUB_RUN_ID"
+          echo "GITHUB_RUN_NUMBER: $GITHUB_RUN_NUMBER"
+          echo "GITHUB_JOB: $GITHUB_JOB"
+          echo "GITHUB_WORKFLOW: ${{github.workflow}}"
+          echo "GITHUB_RUN_ID: ${{github.run_id}}"
+          echo "GITHUB_RUN_NUMBER: ${{github.run_number}}"
+          echo "GITHUB_JOB: ${{github.job}}"
+          echo "GITHUB_REF: ${{github.ref}}"
+      - name: retrieve Variable
+        run: |
+          echo "custom variable value: ${{vars.MY_VAR}}"
