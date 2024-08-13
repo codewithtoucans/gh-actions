@@ -9,6 +9,10 @@ on:
         type: boolean
         default: false
 
+env:
+  MY_WORKFLOW: 'workflow'
+  MY_NAME: 'code rabbit'
+
 jobs:
   echo-data:
     runs-on: ubuntu-latest
@@ -27,3 +31,7 @@ jobs:
       - name: retrieve Variable
         run: |
           echo "custom variable value: ${{vars.MY_VAR}}"
+      - name: retrieve Env Variables
+        run: |
+          echo "env value: ${{env.MY_WORKFLOW}}}"
+          echo "env value: ${{env.MY_NAME}}}"
