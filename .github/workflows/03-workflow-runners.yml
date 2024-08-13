@@ -18,7 +18,7 @@ jobs:
           echo "This job is running on an ubuntu runner"
           echo "Runner OS is $RUNNER_OS"
   mac-echo:
-    runs-on: mac-latest
+    runs-on: macos-latest
     steps:
       - name: echo
         run: |
