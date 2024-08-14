@@ -1,0 +1,28 @@
+name: 07 - Expressions
+run-name: 07 - Expressions | DEBUG ${{ inputs.debug && 'ON' || 'OFF'}}
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Debug mode'
+        type: boolean
+        default: false
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: '[debug] Print start-up message'
+        if: ${{ inputs.debug }}
+        run: |
+          echo "Triggered by: ${{github.event_name}}"
+          echo "Branch : ${{github.ref}}"
+          echo "SHA : ${{github.sha}}"
+          echo "Branch : ${{github.head_ref}}"
+      - name: '[debug] Print end message from main'
+        if: ${{ inputs.debug && github.ref == 'refs/heads/main' }}
+        run: echo "I was triggered from main"
+      - name: echo hello
+        run: echo "Hello, world!"
