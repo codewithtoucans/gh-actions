@@ -1,9 +1,9 @@
 name: 08 - variables
 
 on:
-  push:
   workflow_dispatch:
 
+# define file env variables
 env:
   ENV_NAME: 'The yaml file ENV_NAME'
 
@@ -14,6 +14,7 @@ jobs:
       - name: Print an env var
         run: echo "The ENV_NAME is ${{ env.ENV_NAME }}"
       - name: Print an env var
+        # define jobs env variables
         env:
           ENV_NAME: 'The job ENV_NAME'
         run: echo "The ENV_NAME is ${{ env.ENV_NAME }}"
