@@ -1,0 +1,21 @@
+name: 08 - variables
+
+on:
+  push:
+  workflow_dispatch:
+
+env:
+  ENV_NAME: 'The yaml file ENV_NAME'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print an env var
+        run: echo "The ENV_NAME is ${{ env.ENV_NAME }}"
+      - name: Print an env var
+        env:
+          ENV_NAME: 'The job ENV_NAME'
+        run: echo "The ENV_NAME is ${{ env.ENV_NAME }}"
+      - name: Print an repo var
+        run: echo "The MY_VAR is ${{ vars.MY_VAR }}"
