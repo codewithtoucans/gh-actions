@@ -6,10 +6,10 @@ on:
         description: skip deployment
         default: false
         type: boolean
-      target:
-        type: environment
-        description: target environment
-        required: true
+      # target:
+      #   type: environment
+      #   description: target environment
+      #   required: true
       tag:
         type: choice
         options:
@@ -27,7 +27,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     if: ${{!inputs.dry-run}}
-    environment: ${{inputs.target}}
     steps:
       - name: deploy
-        run: echo "deploying to ${{inputs.target}}"
+        run: echo "deploying to prod"
