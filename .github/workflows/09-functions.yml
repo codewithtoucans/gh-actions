@@ -17,15 +17,17 @@ jobs:
       - name: I will be skipped
         if: ${{success()}}
         run: echo "Hello, world!"
+      - name: sleep
+        run: sleep 10
       - name: I will execute
         if: ${{failure()}}
-        run: echo "Hello, world!"
+        run: echo "failure!"
       - name: I will execute
         if: ${{!cancelled()}}
-        run: echo "Hello, world!"
+        run: echo "not cancelled!"
       - name: I will not execute
         if: ${{cancelled()}}
-        run: echo "Hello, world!"
+        run: echo "cancelled!"
       - name: some step
         run: '${{startsWith(env.personal_var, env.my)}}'
       - name: labels
