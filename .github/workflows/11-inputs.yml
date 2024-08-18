@@ -10,7 +10,6 @@ on:
         type: environment
         description: target environment
         required: true
-        default: dev
       tag:
         type: choice
         options:
