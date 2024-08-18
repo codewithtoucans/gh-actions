@@ -1,0 +1,32 @@
+name: 09 - functions
+
+on:
+  push:
+  workflow_dispatch:
+
+env:
+  personal_var: 'my name is start with my'
+  my: 'my'
+
+jobs:
+  functions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failing step
+        run: exit 1
+      - name: I will be skipped
+        if: ${{success()}}
+        run: echo "Hello, world!"
+      - name: I will execute
+        if: ${{failure()}}
+        run: echo "Hello, world!"
+      - name: I will execute
+        if: ${{!cancelled()}}
+        run: echo "Hello, world!"
+      - name: I will execute
+        if: ${{cancelled()}}
+        run: echo "Hello, world!"
+      - name: some step
+        run: '${{startsWith(env.personal_var, env.my)}}'
+      - name: labels
+        run: ${{toJson(github.event.head_commit)}}
