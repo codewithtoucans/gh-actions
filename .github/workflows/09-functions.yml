@@ -23,10 +23,10 @@ jobs:
       - name: I will execute
         if: ${{!cancelled()}}
         run: echo "Hello, world!"
-      - name: I will execute
+      - name: I will not execute
         if: ${{cancelled()}}
         run: echo "Hello, world!"
       - name: some step
         run: '${{startsWith(env.personal_var, env.my)}}'
       - name: labels
-        run: ${{toJson(github.event.head_commit)}}
+        run: ${{toJson(github.event_name)}}
