@@ -12,13 +12,13 @@ jobs:
   functions:
     runs-on: ubuntu-latest
     steps:
+      - name: sleep
+        run: sleep 10
       - name: Failing step
         run: exit 1
       - name: I will be skipped
         if: ${{success()}}
         run: echo "Hello, world!"
-      - name: sleep
-        run: sleep 10
       - name: I will execute
         if: ${{failure()}}
         run: echo "failure!"
