@@ -10,6 +10,7 @@ on:
           - failure
         default: success
 
+# every step in jobs have its own github output path.
 jobs:
   build:
     runs-on: ubuntu-latest
