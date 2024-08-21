@@ -1,0 +1,38 @@
+name: 13 - Caching
+on:
+  workflow_dispatch:
+    inputs:
+      use-cache:
+        description: Whether to use cache or not
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 04-using-actions/react-app
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+      - name: Download cached deps
+        uses: actions/cache@v4
+        if: ${{inputs.use-cache}}
+        id: cache
+        with:
+          path: 04-using-actions/react-app/node_modules
+          key: deps-nodes-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install deps
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+        working-directory: 04-using-actions/react-app
+      - name: Run tests
+        run: npm run test
+        working-directory: 04-using-actions/react-app
+      - name: Deploying to prod
+        run: echo "deploying to prod"
